@@ -1,0 +1,67 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:AvaloniaApp.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="AvaloniaApp.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="AvaloniaApp">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+	<StackPanel>
+		<Button Margin="5, 5, 5, 5" Content="Receive playlist"
+				Command="{Binding ReceivePlaylistsCommand }"></Button>
+		<StackPanel Orientation="Horizontal">
+			<Label VerticalAlignment="Center">Url:</Label>
+			<TextBox Width="300" Text="{Binding ParseUrl, Mode=TwoWay}"></TextBox>
+
+		</StackPanel>
+		<StackPanel Orientation="Horizontal" >
+			<Label VerticalAlignment="Center">Playlist name:</Label>
+			<TextBlock VerticalAlignment="Center" Text="{Binding PlaylistName, Mode=TwoWay}"></TextBlock>
+		</StackPanel>		
+		<Image Source="{Binding Img}"
+		   Width="200"
+           Height="200"
+           Name="MyImage"></Image>
+		<ListBox Name="lbEurInsuredType" HorizontalAlignment="Stretch" Items="{Binding Songs}">
+			<ListBox.Template>
+				<ControlTemplate>
+					<DockPanel LastChildFill="True">
+						<Grid DockPanel.Dock="Top" Height="30">
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="300"></ColumnDefinition>
+								<ColumnDefinition Width="200"></ColumnDefinition>
+								<ColumnDefinition Width="300"></ColumnDefinition>
+							</Grid.ColumnDefinitions>
+							<Label Grid.Column="0"> Name</Label>
+							<Label Grid.Column="1"> Artist</Label>
+							<Label Grid.Column="2"> Album</Label>
+						</Grid>
+						<ItemsPresenter></ItemsPresenter>
+					</DockPanel>
+				</ControlTemplate>
+			</ListBox.Template>
+			<ListBox.ItemTemplate>
+				<DataTemplate>
+					<Grid Margin="0,2">
+						<Grid.ColumnDefinitions>
+							<ColumnDefinition Width="300"></ColumnDefinition>
+							<ColumnDefinition Width="200"></ColumnDefinition>
+							<ColumnDefinition Width="300"></ColumnDefinition>
+						</Grid.ColumnDefinitions>
+						<TextBlock Text="{Binding Name}"></TextBlock>
+						<TextBlock Text="{Binding ArtistName}" Grid.Column="1"></TextBlock>
+						<TextBlock Text="{Binding AlbumName}" Grid.Column="3"></TextBlock>
+					</Grid>
+				</DataTemplate>
+			</ListBox.ItemTemplate>
+		</ListBox>
+		<TextBlock Text="{Binding ErrorMessage}"></TextBlock>
+	</StackPanel>
+
+</Window>
