@@ -13,6 +13,13 @@ using System.Windows.Input;
 
 namespace AvaloniaApp.ViewModels
 {
+    interface MyStruct
+    {
+        string Name { get; set; }
+
+
+    }
+
     public class MainWindowViewModel : ViewModelBase
     {
         private ObservableCollection<Song> _songs;
@@ -87,6 +94,7 @@ namespace AvaloniaApp.ViewModels
                 var imgFilter = "//img[@class='o-pwa-image__img c-pwa-image-viewer__img js-pwa-faceout-image']";
                 var titleFilter = "//h1[@class='c-pwa-product-meta-heading']";
                 var detailsFilter = "//div[@class='o-pwa-accordion c-pwa-product-details__details is-expanded--medium is-expanded--large']";
+                //var detailsFilter = "//div[@class='c-pwa-product-details__details']";
                 var headingFilter = "//h1[@class='c-pwa-product-meta-heading']";
 
                 HtmlWeb web = new HtmlWeb();
